@@ -29,7 +29,7 @@ with st.sidebar:
     st.image('https://www.pngkey.com/png/full/115-1159250_hey-machine-learning-logo-machine-learning-logo.png', output_format='PNG')
     choice = st.radio('Navigation', [
                       'Upload', 'EDA', 'ML - Classification', 'ML - Regression', 'Download'])
-    st.info('This webapp allows you to create automated ML pipelines, using Python, Streamlit, and Pandas-Profiling. Code available on Github.')
+    st.info('This webapp allows you to create automated ML pipelines, using Python, Streamlit, and Pandas-Profiling. Code available on Github @ https://github.com/sergani/auto-ml.')
 
 if choice == 'Upload':
     st.title('Upload data for profiling and modeling')
