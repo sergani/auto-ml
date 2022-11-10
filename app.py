@@ -37,61 +37,104 @@ if choice == 'Upload':
                             accept_multiple_files=False, type='csv')
     if file:
         df = pd.read_csv(file)
-        df.to_csv('uploads/uploaded_dataset.csv', index=None)
+        df.to_csv('uploads/' + file.name, index=None)
         st.dataframe(df)
 
 if choice == 'EDA':
     st.title('Exploratory Data Analysis')
-    st.text(f'Using file: {uploaded_file}')
-    profile_df = df.profile_report()
-    st_profile_report(profile_df)
+    file_list = []
+
+    for fname in os.listdir('uploads'):
+        if fname.endswith(('.csv', '.CSV', '.Csv')):
+            file_list.append(fname)
+
+    if len(file_list) > 0:
+        dataset = st.selectbox(
+            'Choose one of the following available files', file_list)
+        
+        if st.button('Run EDA!'):
+            st.text(f'Using file: {dataset}')
+            df = pd.read_csv(f'uploads/{dataset}')
+            profile_df = df.profile_report()
+            st_profile_report(profile_df)
+    else:
+        st.text('Please upload a dataset first!')
+        st.text('It will then appear here..')
 
 if choice == 'ML - Classification':
     st.title('Modelling (Classification)')
-    st.text(f'Using file: {uploaded_file}')
+    file_list = []
 
-    # choose the classification target (y)
-    y = st.selectbox('Choose the Target Column', df.columns)
+    for fname in os.listdir('uploads'):
+        if fname.endswith(('.csv', '.CSV', '.Csv')):
+            file_list.append(fname)
 
-    if st.button('Run Modelling'):
-        # setup the models
-        setup = pycc.setup(df, target=y)
-        setup_df = pycc.pull()
-        st.dataframe(setup_df)
+    if len(file_list) > 0:
+        dataset = st.selectbox(
+            'Choose one of the following available files:', file_list)
+        
+        df = pd.read_csv(f'uploads/{dataset}')
 
-        # compare and select the best model
-        best_model = pycc.compare_models()
-        compare_df = pycc.pull()
-        st.dataframe(compare_df)
+        y = st.selectbox('Choose the target classification column:', df.columns)
+        
+        if st.button('Run Modelling!'):
+            # setup the models
+            setup = pycc.setup(df, target=y)
+            setup_df = pycc.pull()
+            st.dataframe(setup_df)
 
-        # save the model to the models directory
-        pycc.save_model(best_model, 'models/best_model_cls.mdl')
+            # compare and select the best model
+            best_model = pycc.compare_models()
+            compare_df = pycc.pull()
+            st.dataframe(compare_df)
+
+            # save the model to the models directory
+            pycc.save_model(best_model, 'models/best_model_cls')
+    else:
+        st.text('Please upload a dataset first!')
+        st.text('It will then appear here..')
 
 if choice == 'ML - Regression':
     st.title('Modelling (Regression)')
-    st.text(f'Using file: {uploaded_file}')
+    file_list = []
 
-    # choose the regression target (y)
-    y = st.selectbox('Choose the Target Column', df.columns)
+    for fname in os.listdir('uploads'):
+        if fname.endswith(('.csv', '.CSV', '.Csv')):
+            file_list.append(fname)
 
-    if st.button('Run Modelling'):
-        # setup the models
-        setup = pycr.setup(df, target=y)
-        setup_df = pycr.pull()
-        st.dataframe(setup_df)
+    if len(file_list) > 0:
+        dataset = st.selectbox(
+            'Choose one of the following available files:', file_list)
+        
+        df = pd.read_csv(f'uploads/{dataset}')
 
-        # compare and select the best model
-        best_model = pycr.compare_models()
-        compare_df = pycr.pull()
-        st.dataframe(compare_df)
+        y = st.selectbox('Choose the target regression column:', df.columns)
+        
+        if st.button('Run Modelling!'):
+            # setup the models
+            setup = pycr.setup(df, target=y)
+            setup_df = pycr.pull()
+            st.dataframe(setup_df)
 
-        # save the model to the models directory
-        pycr.save_model(best_model, 'models/best_model_reg.mdl')
+            # compare and select the best model
+            best_model = pycr.compare_models()
+            compare_df = pycr.pull()
+            st.dataframe(compare_df)
+
+            # save the model to the models directory
+            pycr.save_model(best_model, 'models/best_model_reg')
+    else:
+        st.text('Please upload a dataset first!')
+        st.text('It will then appear here..')
 
 if choice == 'Download':
     # get list of available files to download
     dl_file = st.radio('Available files to download:', os.listdir('models'))
 
     # download the selected model file
-    with open('models/' + dl_file, 'rb') as f:
-        st.download_button('Download Model', f, file_name=dl_file)
+    if dl_file:
+        with open('models/' + dl_file, 'rb') as f:
+            st.download_button('Download Model', f, file_name=dl_file)
+    else:
+        st.text('Please model a dataset first!')
+        st.text('It will then appear here..')
