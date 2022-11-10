@@ -2,3 +2,4 @@ test_datasets/*
 uploads/*
 *.log
 .DS_Store
+AutoViz_Plots
