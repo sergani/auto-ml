@@ -50,6 +50,6 @@ If you want to download the model for future use in your data science pipeline, 
 
 # Jupyter Notebook
 
-There's also a Jupyter notebook available with the source code called app.ipynb. This explores Pycaret's EDA.
+There's also a Jupyter notebook available with the source code called app.ipynb. This explores Pycaret's EDA. It's best run in JupyterLab and not VS Code.
 
 That's it! Hope this was informative.

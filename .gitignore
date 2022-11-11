@@ -4,3 +4,4 @@ uploads/*
 .DS_Store
 AutoViz_Plots
 models/*
+.ipynb_checkpoints
