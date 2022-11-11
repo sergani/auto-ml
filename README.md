@@ -24,7 +24,7 @@ To run the app, all you have to do is run app.py using streamlit:
 
 If you get this in your browser then you're all good!
 
-![Main page view](https://drive.google.com/file/d/1N39WP6WKQFgX4R5lyFT_X5xfi_8Lhw4W/view?usp=share_link)
+![Main page view](https://drive.google.com/file/d/1N39WP6WKQFgX4R5lyFT_X5xfi_8Lhw4W)
 
 To upload your dataset, just click on Browse files. You'll be able to upload single CSV files only.
 
