@@ -18,6 +18,8 @@ First you need to clone the project. You probably want to have a virtual environ
 
 `# pip install -r requirements.txt`
 
+# Run the App
+
 To run the app, all you have to do is run app.py using streamlit:
 
 `# streamlit run app.py`
@@ -47,5 +49,9 @@ At this point, the modelling is done and the best model is chosen by the app aft
 If you want to download the model for future use in your data science pipeline, just go to Download and select the model you want to download:
 
 ![ML Model Download](https://drive.google.com/uc?export=view&id=1dcfohutBL5PgXaseV7owmPtMMjGjKaS3)
+
+# Jupyter Notebook
+
+There's also a Jupyter notebook available with the source code called app.ipynb. This explores Pycaret's EDA.
 
 That's it! Hope this was informative.
