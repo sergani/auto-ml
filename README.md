@@ -7,10 +7,18 @@ This project is heavily inspired by Nicholas Renotte's video on Youtube (https:/
 First you need to clone the project. You probably want to have a virtual environment for this to work without affecting your main development environment.
 
 `mkdir -p /path/to/virtualenv/`
+
 `cd /path/to/virtualenv/`
+
 `python3 -m venv ./`
+
 `source bin/activate`
+
 `pip install -r requirements.txt`
 
+`git clone https://github.com/sergani/auto-ml.git`
+
 To run the app, all you have to do is run app.py using streamlit:
+
 `streamlit run app.py`
+
