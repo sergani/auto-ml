@@ -36,9 +36,7 @@ To explore the data, go to the EDA tab on the left hand side, select one of the 
 
 ![EDA](https://drive.google.com/uc?export=view&id=1jXXc1FAJrM4mCknAO9puaqXwXXwBSJC6)
 
-To apply machine learning, go to the right tab on the left hand side, for example, this Titanic dataset is a classification one and so that's what we select:
-
-Once you're on this page, select one of the available datasets uploaded previously, and wait for the app to load the dataset. Afterwards, you have to select the target classification column and click on "Run Modelling!" as follows:
+To apply machine learning, go to the right tab on the left hand side, for example, this Titanic dataset is a classification one and so that's what we select. Once you're on this page, select one of the available datasets uploaded previously, and wait for the app to load the dataset. Afterwards, you have to select the target classification column and click on "Run Modelling!" as follows:
 
 ![ML Classification](https://drive.google.com/uc?export=view&id=1vK4nbA71z88iozG4J1nN4vVLLQ0AGp1G)
 
