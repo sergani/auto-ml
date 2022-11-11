@@ -81,11 +81,13 @@ if choice == 'ML - Classification':
             # setup the models
             setup = pycc.setup(df, target=y)
             setup_df = pycc.pull()
+            st.text('Model setup and description:')
             st.dataframe(setup_df)
 
             # compare and select the best model
             best_model = pycc.compare_models()
             compare_df = pycc.pull()
+            st.text('Model comparison:')
             st.dataframe(compare_df)
 
             # save the model to the models directory
@@ -114,11 +116,13 @@ if choice == 'ML - Regression':
             # setup the models
             setup = pycr.setup(df, target=y)
             setup_df = pycr.pull()
+            st.text('Model setup and description:')
             st.dataframe(setup_df)
 
             # compare and select the best model
             best_model = pycr.compare_models()
             compare_df = pycr.pull()
+            st.text('Model comparison:')
             st.dataframe(compare_df)
 
             # save the model to the models directory
@@ -129,12 +133,19 @@ if choice == 'ML - Regression':
 
 if choice == 'Download':
     # get list of available files to download
-    dl_file = st.radio('Available files to download:', os.listdir('models'))
+    file_list = []
 
-    # download the selected model file
-    if dl_file:
-        with open('models/' + dl_file, 'rb') as f:
-            st.download_button('Download Model', f, file_name=dl_file)
+    for fname in os.listdir('models'):
+        if fname.endswith(('.pkl')):
+            file_list.append(fname)
+    
+    if len(file_list) > 0:
+        dl_file = st.radio('Available files to download:', file_list)
+        # download the selected model file
+        if dl_file:
+            with open('models/' + dl_file, 'rb') as f:
+                st.download_button('Download', f, file_name=dl_file)
+    
     else:
         st.text('Please model a dataset first!')
         st.text('It will then appear here..')
